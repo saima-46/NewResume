@@ -1,78 +1,90 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-//  Load logged-in user (if any)
-const storedUser = JSON.parse(localStorage.getItem("user"));
+// ------------------------- LOGIN -------------------------
+export const login = createAsyncThunk("auth/login", async (data, { rejectWithValue }) => {
+  try {
+    // Hardcoded admin login
+    if (data.username === "admin" && data.password === "admin123") {
+      const adminUser = {
+        id: 0,
+        username: "admin",
+        name: "Admin User",
+        role: "admin",
+      };
+      localStorage.setItem("user", JSON.stringify(adminUser));
+      return adminUser;
+    }
 
-//  Predefined Admin Account (fixed, not creatable by signup)
-const adminAccount = {
-  email: "admin@example.com",
-  password: "admin123",
-  role: "admin",
-  name: "Admin",
-};
+    // Normal user login via dummyjson API
+    const req = await fetch("https://dummyjson.com/user/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: data.username,
+        password: data.password,
+        expiresInMins: 30,
+      }),
+    });
 
+    const res = await req.json();
+
+    if (res.message) return rejectWithValue(res.message);
+
+    // Save user to localStorage
+    localStorage.setItem("user", JSON.stringify(res));
+    return res;
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
+// ------------------------- SIGNUP -------------------------
+export const signup = createAsyncThunk("auth/signup", async (data) => {
+  // Simulate API signup; role can be "user" or "admin"
+  const newUser = {
+    id: Date.now(),
+    ...data,
+  };
+  return newUser;
+});
+
+// ------------------------- SLICE -------------------------
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: storedUser || null,
+    user: JSON.parse(localStorage.getItem("user")) || null,
+    loading: false,
+    error: null,
   },
   reducers: {
-    //  SIGNUP
-    signup: (state, action) => {
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-      const { email } = action.payload;
-
-      //  Prevent using admin email for signup
-      if (email === adminAccount.email) {
-        alert("This email is reserved for admin. Please use another email.");
-        return;
-      }
-
-      // Prevent duplicate registration
-      const existingUser = users.find((u) => u.email === email);
-      if (existingUser) {
-        alert("This email is already registered. Please log in instead.");
-        return;
-      }
-
-      //  Create new user with "user" role
-      const newUser = { ...action.payload, role: "user" };
-      users.push(newUser);
-      localStorage.setItem("users", JSON.stringify(users));
-
-      alert("Signup successful! You can now log in.");
-    },
-
-    // LOGIN
-    login: (state, action) => {
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-      const { email, password } = action.payload;
-      let user = null;
-
-      //  Check for admin login
-      if (email === adminAccount.email && password === adminAccount.password) {
-        user = adminAccount;
-      } else {
-        // Check for normal user
-        user = users.find((u) => u.email === email && u.password === password);
-      }
-
-      if (user) {
-        state.user = user;
-        localStorage.setItem("user", JSON.stringify(user));
-        alert(`Welcome back, ${user.role === "admin" ? "Admin" : user.name || "User"}!`);
-      } else {
-        alert("Invalid email or password!");
-      }
-    },
-
-    //  LOGOUT
     logout: (state) => {
       state.user = null;
       localStorage.removeItem("user");
     },
   },
+  extraReducers: (builder) => {
+    // --- LOGIN ---
+    builder
+      .addCase(login.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+        state.error = null;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Login failed";
+      });
+
+    // --- SIGNUP ---
+    builder.addCase(signup.fulfilled, (state, action) => {
+      console.log("User signed up:", action.payload);
+    });
+  },
 });
 
-export const { signup, login, logout } = authSlice.actions;
+export const { logout } = authSlice.actions;
 export default authSlice;

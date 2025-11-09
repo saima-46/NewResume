@@ -11,14 +11,14 @@ const Dashboard = () => {
   //  If no user is logged in, redirect to login
   useEffect(() => {
     if (!user) {
-      navigate("/login");
+      navigate("/");
     }
   }, [user, navigate]);
 
   // Logout handler
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/login");
+    navigate("/");
   };
 
   return (
