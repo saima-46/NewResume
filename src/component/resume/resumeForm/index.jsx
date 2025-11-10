@@ -44,7 +44,7 @@ const ResumeForm = ({ onSubmit, initialData = {}, onCancel }) => {
       onSubmit={handleSubmit(submitHandler)}
       className="space-y-6 p-6 bg-white rounded-xl shadow-md max-w-4xl mx-auto"
     >
-      <h2 className="text-2xl font-bold text-indigo-600 mb-4">Create Your Resume</h2>
+      <h2 className="text-2xl font-bold text-indigo-600 mb-4 text-center">Create Your Resume</h2>
 
       {/* Personal Info + Image */}
       <section className="space-y-4">

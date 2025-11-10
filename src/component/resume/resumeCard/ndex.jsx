@@ -24,7 +24,7 @@ const resumeArray = [
   {
     id: 4,
     name: "Template 4",
-    thumbnail: "/img/card3.jpeg",
+    thumbnail: "https://www.resumebuilder.com/wp-content/uploads/2021/11/Maintenance-Technician-Entry-Level.pdf.jpeg",
     templatePath: "/dashboard/template2",
   },
 ];
