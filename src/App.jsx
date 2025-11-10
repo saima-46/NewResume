@@ -17,7 +17,7 @@ import ResumeTemplate from "./pages/user/resumeTemplate";
 
 function App() {
 const location=useLocation()
-const hideNavbar=location?.pathname==="/dashboard"
+const hideNavbar=location.pathname.startsWith("/dashboard")
 
   return (
     <>
