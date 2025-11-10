@@ -10,11 +10,12 @@ const Sidebar = () => {
   const { user } = useSelector((state) => state.auth);
 
   const menuItems = [
-    { name: "My Resumes", path: "/dashboard/resumes" },
-    { name: "Resume Template", path: "/dashboard/template" },
-    { name: "Create Resume", path: "/dashboard/create" },
+   { name: "Create Resume", path: "/dashboard" },
+    { name: "Resume Template", path: "/dashboard/resumeTemplate" },
+    
+     { name: "My Resumes", path: "/dashboard/resumes" },
     { name: "Profile", path: "/dashboard/profile" },
-    { name: "Settings", path: "/dashboard/settings" },
+   
   ];
 
   const handleLogout = () => {
@@ -23,7 +24,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 bg-white shadow-md min-h-screen p-4 hidden md:flex flex-col justify-between">
+    <div className="w-64 bg-white shadow-md  p-4 hidden md:flex flex-col justify-between sticky">
       <div>
         <h2 className="text-2xl font-bold text-indigo-600 mb-6">Dashboard</h2>
         <nav className="flex flex-col space-y-2">

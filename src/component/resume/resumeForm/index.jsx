@@ -51,6 +51,7 @@ const ResumeForm = ({ onSubmit, initialData = {}, onCancel }) => {
         <h3 className="font-semibold text-lg text-gray-700">Personal Information</h3>
         <div className="flex flex-col md:flex-row md:space-x-6 items-center">
           <div className="flex-1 space-y-4 w-full">
+           
             <input
               type="text"
               placeholder="Full Name"
@@ -75,8 +76,24 @@ const ResumeForm = ({ onSubmit, initialData = {}, onCancel }) => {
               {...register("location")}
               className="border px-3 py-2 rounded focus:ring-2 focus:ring-indigo-400 outline-none w-full"
             />
+             <div className="mt-4 md:mt-0">
+            <label className="block text-gray-700 font-medium mb-2">Profile Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400 w-full"
+            />
+            {preview && (
+              <img
+                src={preview}
+                alt="Preview"
+                className="mt-3 w-32 h-32 object-cover  border "
+              />
+            )}
+          </div> 
           </div>
-          <div className="mt-4 md:mt-0">
+          {/* <div className="mt-4 md:mt-0">
             <label className="block text-gray-700 font-medium mb-2">Profile Image</label>
             <input
               type="file"
@@ -91,7 +108,7 @@ const ResumeForm = ({ onSubmit, initialData = {}, onCancel }) => {
                 className="mt-3 w-32 h-32 object-cover  border"
               />
             )}
-          </div>
+          </div> */}
         </div>
       </section>
 
