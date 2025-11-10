@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/slice/authSlice";
 
-// ✅ Fixed import paths (your folders are named "loginModel" and "signupModel")
+
 import LoginModal from "../loginModel";
 import SignupModal from "../signupModel";
 
@@ -199,7 +199,7 @@ const Navbar = () => {
         )}
       </nav>
 
-      {/* 🔹 Modals */}
+      {/*  Modals */}
       <LoginModal
         isOpen={showLogin}
         onClose={() => setShowLogin(false)}

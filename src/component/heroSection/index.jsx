@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Sparkles, FileText, Brain, ArrowRight } from "lucide-react";
-import heroImg from "../../assets/img/hero.png";
+import heroImg from "/img/hero.png";
 
 const HeroSection = () => {
   const texts = ["in Seconds", "with AI", "for Free"];

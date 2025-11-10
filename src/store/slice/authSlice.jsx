@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// ------------------------- LOGIN -------------------------
+//  LOGIN 
 export const login = createAsyncThunk("auth/login", async (data, { rejectWithValue }) => {
   try {
     // Hardcoded admin login
@@ -38,9 +38,9 @@ export const login = createAsyncThunk("auth/login", async (data, { rejectWithVal
   }
 });
 
-// ------------------------- SIGNUP -------------------------
+//  SIGNUP 
 export const signup = createAsyncThunk("auth/signup", async (data) => {
-  // Simulate API signup; role can be "user" or "admin"
+  // Simulate API signup role can be "user" or "admin"
   const newUser = {
     id: Date.now(),
     ...data,
@@ -63,7 +63,7 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // --- LOGIN ---
+    //  LOGIN 
     builder
       .addCase(login.pending, (state) => {
         state.loading = true;
@@ -79,7 +79,7 @@ const authSlice = createSlice({
         state.error = action.payload || "Login failed";
       });
 
-    // --- SIGNUP ---
+    //  SIGNUP 
     builder.addCase(signup.fulfilled, (state, action) => {
       console.log("User signed up:", action.payload);
     });

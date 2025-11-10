@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../../../component/sidebar";
-// import Sidebar from "../sidebar/Sidebar";
+
 
 const UserDashboard = () => {
   return (

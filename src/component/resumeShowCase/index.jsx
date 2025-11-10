@@ -19,7 +19,7 @@ const ResumeShowcase = () => {
       {/* Full-width image section */}
       <div className="w-full overflow-hidden px-5">
         <img
-          src="src/assets/img/big.png"
+          src="/img/big.png"
           alt="Professional Resume Templates"
           className="w-full h-auto object-cover transition-transform duration-700 ease-in-out hover:scale-105"
         />

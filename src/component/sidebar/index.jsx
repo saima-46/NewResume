@@ -23,7 +23,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 bg-white shadow-md min-vh-screen p-4 hidden md:flex flex-col justify-between">
+    <div className="w-64 bg-white shadow-md min-h-screen p-4 hidden md:flex flex-col justify-between">
       <div>
         <h2 className="text-2xl font-bold text-indigo-600 mb-6">Dashboard</h2>
         <nav className="flex flex-col space-y-2">

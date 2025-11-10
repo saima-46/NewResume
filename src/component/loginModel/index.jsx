@@ -16,7 +16,7 @@ const LoginModal = ({ isOpen, onClose, onSignupOpen }) => {
       const user = res.payload;
       onClose(); // close modal
 
-      // ✅ Navigate based on role
+      
       if (user.role === "admin") navigate("/admin");
       else navigate("/dashboard");
     } else {
