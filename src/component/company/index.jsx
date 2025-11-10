@@ -3,10 +3,10 @@ import React from "react";
 const Company = () => {
   // Step 1: Store all logos in an array
   const companyLogos = [
-    { src: "src/assets/img/company1.png", alt: "Khasologix" },
-    { src: "src/assets/img/company2.png", alt: "Appinators" },
-    { src: "src/assets/img/company3.png", alt: "F.H.A" },
-    { src: "src/assets/img/company4.png", alt: "Lads Technologies" },
+    { src: "/src/assets/img/company1.png", alt: "Khasologix" },
+    { src: "/src/assets/img/company2.png", alt: "Appinators" },
+    { src: "/src/assets/img/company3.png", alt: "F.H.A" },
+    { src: "/src/assets/img/company4.png", alt: "Lads Technologies" },
   ];
 
   return (
