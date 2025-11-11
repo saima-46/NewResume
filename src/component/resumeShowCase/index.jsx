@@ -17,7 +17,7 @@ const ResumeShowcase = () => {
       </div>
 
       {/* Full-width image section */}
-      <div className="w-full overflow-hidden px-5">
+      <div className="w-[90%] overflow-hidden ">
         <img
           src="/img/big.png"
           alt="Professional Resume Templates"

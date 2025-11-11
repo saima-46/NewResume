@@ -14,6 +14,7 @@ import ResumeForm from "./component/resume/resumeForm";
 import Template1 from "./component/template/template1";
 import Template2 from "./component/template/template2";
 import ResumeTemplate from "./pages/user/resumeTemplate";
+import LoginModal from "./component/loginModel";
 
 function App() {
 const location=useLocation()
@@ -26,6 +27,7 @@ const hideNavbar=location.pathname.startsWith("/dashboard")
         <Route path="/" element={<Home />} />
 <Route path="/about" element={<About/>} />
 <Route path="/contact" element={<Contact/>} />
+
 
         {/* User Dashboard Protected Routes */}
         <Route
